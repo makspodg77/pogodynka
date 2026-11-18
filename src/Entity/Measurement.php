@@ -17,8 +17,8 @@ class Measurement
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 0)]
     private ?string $windiness = null;
 
-    #[ORM\Column]
-    private ?int $temprature = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2)]
+    private ?string $temprature = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTime $date = null;
@@ -38,6 +38,15 @@ class Measurement
         return $this->id;
     }
 
+    public function getFahrenheit(): ?float
+    {
+        if ($this->temprature === null) {
+            return null;
+        }
+
+        return (float) $this->temprature * 9 / 5 + 32;
+    }
+
     public function getWindiness(): ?string
     {
         return $this->windiness;
@@ -50,12 +59,12 @@ class Measurement
         return $this;
     }
 
-    public function getTemprature(): ?int
+    public function getTemprature(): ?string
     {
         return $this->temprature;
     }
 
-    public function setTemprature(int $temprature): static
+    public function setTemprature(string $temprature): static
     {
         $this->temprature = $temprature;
 

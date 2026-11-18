@@ -1,0 +1,14 @@
+{%- autoescape false -%}
+city,country,date,celsius,fahrenheit
+{% for row in rows -%}
+    {{- row.city -}}
+    ,
+    {{- row.country -}}
+    ,
+    {{- row.date -}}
+    ,
+    {{- row.celsius -}}
+    ,
+    {{- row.fahrenheit }}
+{% endfor -%}
+{%- endautoescape %}

@@ -1,0 +1,15 @@
+{
+    "name": "{{ name }}",
+    "country": "{{ country }}",
+    "measurements": [
+{% for row in rows %}
+        {
+            "city": "{{ row.city }}",
+            "country": "{{ row.country }}",
+            "date": "{{ row.date }}",
+            "celsius": {{ row.celsius }},
+            "fahrenheit": {{ row.fahrenheit }}
+        }{% if not loop.last %},{% endif %}
+{% endfor %}
+    ]
+}
